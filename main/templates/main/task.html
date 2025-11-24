@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Создание задачи</title>
+  <link rel="stylesheet" href="{% static "css/task.css"%}">
+</head>
+<body>
+<div class="task-form-box">
+  <div class="title">Создать задачу</div>
+      <form method="post">
+      {% csrf_token %}
+
+      <div class="input-block">
+        {{ form.title}}
+      </div>
+
+      <div class="input-block">
+          {{ form.text}}
+      </div>
+
+    <div class="input-block">
+        {{ form.deadline}}
+    </div>
+
+
+
+      <button type="submit" class="submit-btn">Создать задачу</button>
+     </form>
+
+  {{eror}}
+
+</div>
+</body>
+</html>

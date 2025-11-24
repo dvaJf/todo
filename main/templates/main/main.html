@@ -1,0 +1,86 @@
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static "css/main.css"%}">
+  <title>ToDo App UI</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <form style="width: 100%; margin-right: 12px; height: 100%;" action="task" target="_self">
+        <button class="creat-task"> Создать задачу </button>
+      </form>
+      <form action="profile" target="_self">
+        <button class="profile-box">
+          <div class="profile-avatar"></div>
+          <span>{{ request.user }}</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="grid">
+
+      <!-- COLUMN 1 -->
+      <div class="column">
+        <div class="col-title">Дедлайны</div>
+        {% for el in task%}
+        {% if el.deadline < now%}
+        {% if  el.user  ==   request.user  %}
+        <button class="task">
+        {{ el.title }}
+        <span></span>
+        {{ el.deadline }}
+        <div class="check-icon">✓</div>
+          {%endif%}
+          {%endif%}
+
+      </button>
+        {% endfor %}
+      </div>
+
+      <!-- COLUMN 2 -->
+      <div class="column">
+        <div class="col-title">Задачи</div>
+        {% for el in task%}
+        {% if  el.user  ==   request.user  %}
+          <button class="task">
+            {{ el.title }}
+            <div class="check-icon">✓</div>
+          </button>
+          {%endif%}
+        {% endfor %}
+
+      </div>
+
+      <!-- COLUMN 3 -->
+      <div class="column ai-section" style="display:flex; flex-direction:column; height:88%;">
+        <div class="col-title">Ai ассистент</div>
+
+        <div class="ai-content" style="flex:1;">
+          <div class="chat-bubble">Ask the AI bot</div>
+          <div class="chat-bubble">How can I help?</div>
+        </div>
+
+        <div class="chat-container" style="margin-top:auto;">
+          <input class="chat-input" type="text" placeholder="Введите сообщение...">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+    document.querySelectorAll('.task').forEach(task => {
+      task.addEventListener('click', () => {
+        const check = task.querySelector('.check-icon');
+        check.classList.toggle('checked');
+      });
+    });
+  </script>
+
+</body>
+</html>

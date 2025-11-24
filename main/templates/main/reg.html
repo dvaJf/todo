@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="{% static "css/reg.css"%}">
+</head>
+<body>
+
+  <div class="reg-box">
+    <div class="title">Регистрация</div>
+    <form method="post" action={% url 'reg'%}>
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Имя пользователя</label>
+        <input name='username' type="text" class="form-input" placeholder="Введите имя" />
+      </div>
+  
+      <div class="form-group">
+        <label>Пароль</label>
+        <input name='password1' type="password" class="form-input" placeholder="Введите пароль" />
+      </div>
+      <div class="form-group">
+        <label>Повторите пароль</label>
+        <input name='password2' type="password" class="form-input" placeholder="Введите пароль" />
+      </div>
+      <button class="btn">Регестрация</button>
+    </form>
+<!--
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-input" placeholder="Введите email" />
+    </div>
+
+    <div class="form-group">
+      <label>Имя пользователя</label>
+      <input type="text" class="form-input" placeholder="Введите имя" />
+    </div>
+
+    <div class="form-group">
+      <label>Пароль</label>
+      <input type="password" class="form-input" placeholder="Введите пароль" />
+    </div>
+    <form action="main" target="_self">
+      <button class="reg-btn">Создать аккаунт</button>
+    </form>
+    -->
+    <a class="login-link" href="sigin">Уже есть аккаунт? Войти</a>
+  </div>
+
+</body>
+</html>
