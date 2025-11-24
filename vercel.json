@@ -2,16 +2,15 @@
     "version": 2,
     "builds": [
       {
-        "src": "myproject/wsgi.py", 
+        "src": "todo/wsgi.py", 
         "use": "@vercel/python",
-        "config": { "maxDuration": 10 }
+        "config": { "maxLambdaSize": "15mb","runtime": "python3.10.6" }
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "myproject/wsgi.py"
+        "dest": "todo/wsgi.py"
       }
-    ],
-    "outputDirectory": "static"
+    ]
   }
